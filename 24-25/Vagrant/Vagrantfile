@@ -3,53 +3,53 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.define "rojo" do |rojo|
-    rojo.vm.box = "ubuntu/bionic64"
-    rojo.vm.hostname = "rojo"
-    rojo.vm.provision "shell", inline: <<-SHELL
+  config.vm.define "vm101" do |vm101|
+    vm101.vm.box = "ubuntu/bionic64"
+    vm101.vm.hostname = "vm101"
+    vm101.vm.provision "shell", inline: <<-SHELL
       useradd -m -s /bin/bash user
       echo "user:user" | chpasswd
     SHELL
   
-    rojo.vm.provision "shell", inline: <<-SHELL
+    vm101.vm.provision "shell", inline: <<-SHELL
       sudo apt-get update
-      sudo apt install sshd -y
+      sudo apt-get install openssh-server -y
       echo "PasswordAuthentication yes" | sudo tee -a /etc/ssh/sshd_config
       echo "PermitRootLogin yes" | sudo tee -a /etc/ssh/sshd_config
       sudo systemctl restart sshd      
     SHELL
   end
 
-  config.vm.define "verde" do |verde|
-    verde.vm.box = "ubuntu/bionic64"
-    verde.vm.hostname = "verde"
+  config.vm.define "vm102" do |vm102|
+    vm102.vm.box = "ubuntu/bionic64"
+    vm102.vm.hostname = "vm102"
   
-    verde.vm.provision "shell", inline: <<-SHELL
+    vm102.vm.provision "shell", inline: <<-SHELL
       useradd -m -s /bin/bash user
       echo "user:user" | chpasswd
     SHELL
   
-    verde.vm.provision "shell", inline: <<-SHELL
+    vm102.vm.provision "shell", inline: <<-SHELL
       sudo apt-get update
-      sudo apt install sshd -y
+      sudo apt-get install openssh-server -y
       echo "PasswordAuthentication yes" | sudo tee -a /etc/ssh/sshd_config
       echo "PermitRootLogin yes" | sudo tee -a /etc/ssh/sshd_config
       sudo systemctl restart sshd      
     SHELL
   end
 
-  config.vm.define "azul" do |exdb|
-    azul.vm.box = "ubuntu/bionic64"
-    azul.vm.hostname = "azul"  
+  config.vm.define "vm103" do |vm103|
+    vm103.vm.box = "ubuntu/bionic64"
+    vm103.vm.hostname = "vm103"  
   
-    azul.vm.provision "shell", inline: <<-SHELL
+    vm103.vm.provision "shell", inline: <<-SHELL
       useradd -m -s /bin/bash user
       echo "user:user" | chpasswd
     SHELL
   
-    azul.vm.provision "shell", inline: <<-SHELL
+    vm103.vm.provision "shell", inline: <<-SHELL
       sudo apt-get update
-      sudo apt install sshd -y
+      sudo apt-get install openssh-server -y
       echo "PasswordAuthentication yes" | sudo tee -a /etc/ssh/sshd_config
       echo "PermitRootLogin yes" | sudo tee -a /etc/ssh/sshd_config
       sudo systemctl restart sshd      
