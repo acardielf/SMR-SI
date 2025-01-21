@@ -5,3 +5,4 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashi
 sudo apt update 
 sudo apt install vagrant -y
 vagrant box add ubuntu/bionic64
+vagrant up
