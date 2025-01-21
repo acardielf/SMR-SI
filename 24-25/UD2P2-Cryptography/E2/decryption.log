@@ -1,0 +1,3 @@
+gpg: datos cifrados IDEA.CFB
+gpg: cifrado con 1 frase contraseña
+gpg: descifrado fallido: Clave incorrecta de sesión
