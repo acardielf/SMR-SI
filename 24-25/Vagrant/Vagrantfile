@@ -6,54 +6,54 @@ Vagrant.configure("2") do |config|
   config.vm.define "vm101" do |vm101|
     vm101.vm.box = "ubuntu/bionic64"
     vm101.vm.hostname = "vm101"
-    vm101.vm.provision "shell", inline: <<-SHELL
-      useradd -m -s /bin/bash user
-      echo "user:user" | chpasswd
-    SHELL
-  
-    vm101.vm.provision "shell", inline: <<-SHELL
-      sudo apt-get update
-      sudo apt-get install openssh-server -y
-      echo "PasswordAuthentication yes" | sudo tee -a /etc/ssh/sshd_config
-      echo "PermitRootLogin yes" | sudo tee -a /etc/ssh/sshd_config
-      sudo systemctl restart sshd      
-    SHELL
+    vm101.vm.network "private_network", ip: "192.168.56.101"
+
+    if Vagrant.has_plugin?("vagrant-vbguest")
+      vm101.vbguest.auto_update = false
+    end
+
+    vm101.vm.provision "file", source: "_scripts/user.sh", destination: "/home/vagrant/user.sh"
+    vm101.vm.provision "shell", inline: "sudo bash /home/vagrant/user.sh"
   end
 
   config.vm.define "vm102" do |vm102|
     vm102.vm.box = "ubuntu/bionic64"
     vm102.vm.hostname = "vm102"
+    vm102.vm.network "private_network", ip: "192.168.56.102"
+
+    if Vagrant.has_plugin?("vagrant-vbguest")
+      vm102.vbguest.auto_update = false
+    end
+
+    vm102.vm.provision "file", source: "_scripts/user.sh", destination: "/home/vagrant/user.sh"
+    vm102.vm.provision "shell", inline: "sudo bash /home/vagrant/user.sh"
   
-    vm102.vm.provision "shell", inline: <<-SHELL
-      useradd -m -s /bin/bash user
-      echo "user:user" | chpasswd
-    SHELL
-  
-    vm102.vm.provision "shell", inline: <<-SHELL
-      sudo apt-get update
-      sudo apt-get install openssh-server -y
-      echo "PasswordAuthentication yes" | sudo tee -a /etc/ssh/sshd_config
-      echo "PermitRootLogin yes" | sudo tee -a /etc/ssh/sshd_config
-      sudo systemctl restart sshd      
-    SHELL
+
+    vm102.vm.provision "file", source: "_scripts/apache2.sh", destination: "/home/vagrant/apache2.sh"
+    vm102.vm.provision "shell", inline: "sudo bash /home/vagrant/apache2.sh"
+
+
+    vm102.vm.provision "file", source: "_scripts/fail2ban.sh", destination: "/home/vagrant/fail2ban.sh"
+    vm102.vm.provision "shell", inline: "sudo bash /home/vagrant/fail2ban.sh"
+
+
   end
 
   config.vm.define "vm103" do |vm103|
     vm103.vm.box = "ubuntu/bionic64"
     vm103.vm.hostname = "vm103"  
-  
-    vm103.vm.provision "shell", inline: <<-SHELL
-      useradd -m -s /bin/bash user
-      echo "user:user" | chpasswd
-    SHELL
-  
-    vm103.vm.provision "shell", inline: <<-SHELL
-      sudo apt-get update
-      sudo apt-get install openssh-server -y
-      echo "PasswordAuthentication yes" | sudo tee -a /etc/ssh/sshd_config
-      echo "PermitRootLogin yes" | sudo tee -a /etc/ssh/sshd_config
-      sudo systemctl restart sshd      
-    SHELL
+    vm103.vm.network "private_network", ip: "192.168.56.103"
+
+    if Vagrant.has_plugin?("vagrant-vbguest")
+      vm103.vbguest.auto_update = false
+    end
+
+    vm103.vm.provision "file", source: "_scripts/user.sh", destination: "/home/vagrant/user.sh"
+    vm103.vm.provision "shell", inline: "sudo bash /home/vagrant/user.sh"
+    
+    vm103.vm.provision "file", source: "_scripts/database.sh", destination: "/home/vagrant/database.sh"
+    vm103.vm.provision "shell", inline: "sudo bash /home/vagrant/database.sh"
+
   end 
     
 end
