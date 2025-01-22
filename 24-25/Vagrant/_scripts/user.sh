@@ -16,6 +16,5 @@ usermod -aG sudo user
 # Install SSH server
 sudo apt-get update
 sudo apt-get install openssh-server -y
-echo "PasswordAuthentication yes" | sudo tee -a /etc/ssh/sshd_config
-echo "PermitRootLogin yes" | sudo tee -a /etc/ssh/sshd_config
+sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 sudo systemctl restart sshd
