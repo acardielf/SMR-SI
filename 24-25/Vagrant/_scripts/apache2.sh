@@ -11,7 +11,7 @@ sudo systemctl start apache2
 # Crear el archivo index.php
 cat << 'EOF' | sudo tee /var/www/html/index.php
 <?php
-$servername = "192.168.56.103";
+$servername = "192.168.56.102";
 $username = "dbuser";
 $password = "dbuser";
 
