@@ -7,8 +7,8 @@ sudo systemctl enable mariadb
 sudo systemctl start mariadb
 
 # Configurar MariaDB
-sudo mysql -e "CREATE USER 'dbuser'@'192.168.56.102' IDENTIFIED BY 'dbuser';"
-sudo mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'dbuser'@'192.168.56.102' WITH GRANT OPTION;"
+sudo mysql -e "CREATE USER 'dbuser'@'192.168.56.101' IDENTIFIED BY 'dbuser';"
+sudo mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'dbuser'@'192.168.56.101' WITH GRANT OPTION;"
 sudo mysql -e "FLUSH PRIVILEGES;"
 
 # Configurar MariaDB para escuchar en todas las interfaces
@@ -17,4 +17,4 @@ sudo sed -i 's/^bind-address.*/bind-address = 0.0.0.0/' /etc/mysql/mariadb.conf.
 # Reiniciar MariaDB para aplicar cambios
 sudo systemctl restart mariadb
 
-echo "MariaDB instalado y configurado. Usuario: dbuser, IP permitida: 192.168.56.102"
+echo "MariaDB instalado y configurado. Usuario: dbuser, IP permitida: 192.168.56.101"
