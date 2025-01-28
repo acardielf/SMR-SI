@@ -44,4 +44,27 @@ El objetivo es hacer cumplir los siguientes objetivos y serán los que se evalua
 9. Hay que configurar una jail `[mysql-auth]` de Fail2Ban en `db` para que detecte ataques de identificación y expulse a toda aquella IP que en el plazo de 1 minuto, haya realizado 4 intentos de conexión incorrectos. Deberán ser expulsados del sistema durante 1 día. 
 10. Tienes que configurar el fail2ban de `db` para que por defecto, ignore siempre las conexiones incorrectas que procedan de `web` 
 
-![Exito](image-1.png)
+![Exito](images/exito.png)
+
+
+## Preguntas frecuentes Vagrant
+
+
+### ¿Como re-ejecutar los scripts cuando le hacemos cambios?
+```sh
+vagrant provision
+```
+
+
+### ¿Como conectarnos por ssh a cada una de las máquinas?
+
+```sh
+vagrant ssh web
+vagrant ssh db
+```
+
+
+### ¿Cómo eliminar las máquinas y empezar de cero?
+```sh
+vagrant destroy -f && vagrant up 
+```
