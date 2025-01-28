@@ -1,9 +1,16 @@
 # Examen Firewall y seguridad en red
 
-Este examen tiene adjunto una definición de infrastructura virtual lista para ser ejecutada con Vagrant.
-La solución a este ejercicio la tienes que escribir en los ficheros `db.sh`, `web.sh` y `jail.local`. Es decir **NO HACE FALTA CAMBIAR NINGÚN FICHERO MÁS**
+## Lee con atención
 
-Levanta las máquinas haciendo uso del siguiente comando:
+La solución a este ejercicio la tienes que escribir en los ficheros `db.sh`, `web.sh` y `jail.local`. Es decir **NO HACE FALTA CAMBIAR NINGÚN FICHERO MÁS QUE ESOS TRES**
+
+Tip: Puedes usar `vagrant provision` para refrescar las máquinas con los cambios que vayas haciendo en los ficheros sh.
+
+Una vez todo funcione, puedes usar  `zip -r <tunombre>.zip .` para empaquetarlo todo en un fichero ZIP y subirlo a la tarea.
+
+## Detalles
+
+Este examen tiene adjunto una definición de infrastructura virtual lista para ser ejecutada con Vagrant. Levanta las máquinas haciendo uso del siguiente comando:
 
 ```sh
 vagrant up
