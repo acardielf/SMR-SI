@@ -1,9 +1,16 @@
 # Examen Firewall y seguridad en red
 
-Este examen tiene adjunto una definición de infrastructura virtual lista para ser ejecutada con Vagrant.
-La solución a este ejercicio la tienes que escribir en los ficheros `db.sh`, `web.sh` y `jail.local`. Es decir **NO HACE FALTA CAMBIAR NINGÚN FICHERO MÁS**
+## Lee con atención
 
-Levanta las máquinas haciendo uso del siguiente comando:
+La solución a este ejercicio la tienes que escribir en los ficheros `db.sh`, `web.sh` y `jail.local`. Es decir **NO HACE FALTA CAMBIAR NINGÚN FICHERO MÁS QUE ESOS TRES**
+
+**Tip:** Puedes usar `vagrant provision` para refrescar las máquinas con los cambios que vayas haciendo en los ficheros sh.
+
+**Entrega:** Una vez todo funcione, puedes usar  `zip -r <tunombre>.zip .` para empaquetarlo todo en un fichero ZIP y subirlo a la tarea.
+
+## Detalles
+
+Este examen tiene adjunto una definición de infrastructura virtual lista para ser ejecutada con Vagrant, que debéis tener instalado en vuestros equipos. Levanta las máquinas haciendo uso del siguiente comando:
 
 ```sh
 vagrant up
@@ -30,6 +37,8 @@ Las IPs que tendrás que usar durante la prueba serán las siguientes:
 | host  | 192.168.56.1   | es tu maquina ubuntu de clase |
 | web   | 192.168.56.101 | maquina apache2 / web         |
 | db    | 192.168.56.102 | maquina mariadb / db          |
+
+Al final del documento hay unos comandos básicos para trabajar con vagrant. 
 
 El objetivo es hacer cumplir los siguientes objetivos y serán los que se evaluarán:
 
@@ -79,4 +88,26 @@ vagrant ssh db
 
 ```sh
 vagrant destroy -f && vagrant up 
+```
+
+### Otros comandos útiles
+
+```bash
+# para levantar la/s maquina/s
+vagrant up 
+
+# para ver el estado de las máquinas
+vagrant status 
+
+# para apagar las maquinas
+vagrant halt 
+
+# para eliminar (desaprovisionar) las maquinas sin confirmación 
+vagrant destroy -f 
+
+# para refrescar la configuracion de las maquinas
+vagrant reload --provision 
+
+# para conectar por ssh a la maquina
+vagrant ssh <maquina>
 ```
