@@ -1,0 +1,8 @@
+
+[apache-limit-request]
+enabled = true
+filter = apache-limit-request
+logpath = /var/log/apache2/access.log
+maxretry = 5
+findtime = 60
+bantime = 120
