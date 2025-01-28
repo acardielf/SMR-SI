@@ -38,7 +38,7 @@ Las IPs que tendrás que usar durante la prueba serán las siguientes:
 | web   | 192.168.56.101 | maquina apache2 / web         |
 | db    | 192.168.56.102 | maquina mariadb / db          |
 
-Al final del documento hay unos comandos básicos para trabajar con vagrant. 
+Al final del documento hay unos comandos básicos para trabajar con vagrant.
 
 El objetivo es hacer cumplir los siguientes objetivos y serán los que se evaluarán:
 
