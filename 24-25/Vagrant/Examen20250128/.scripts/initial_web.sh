@@ -57,17 +57,18 @@ sudo sed -i 's/^Listen .*/Listen 80/' /etc/apache2/ports.conf
 sudo systemctl restart apache2
 
 
-
-
 sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 sudo iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT
 
-iptables -A INPUT -p tcp -s 8.8.8.8 --dport 80 -j REJECT
-iptables -A INPUT -p tcp -s 8.8.8.8 --dport 443 -j REJECT
-iptables -A INPUT -p udp --dport 53 -j REJECT
-iptables -A OUTPUT -p udp --dport 2256 -j ACCEPT
-iptables -A OUTPUT -p icmp -s 10.0.0.0/8 -j ACCEPT
-iptables -A OUTPUT -p tcp --dport 3306 -j ACCEPT
-
 sudo iptables -P INPUT DROP
 sudo iptables -P OUTPUT DROP
+
+# Permitir conexiones locales
+sudo iptables -A INPUT -i lo -j ACCEPT
+sudo iptables -A OUTPUT -o lo -j ACCEPT
+
+# Permitir conexiones DNS para resolver nombres de dominio
+sudo iptables -I INPUT -p udp --sport 53 -j ACCEPT
+sudo iptables -I INPUT -p tcp --sport 53 -j ACCEPT
+sudo iptables -I OUTPUT -p udp --dport 53 -j ACCEPT
+sudo iptables -I OUTPUT -p tcp --dport 53 -j ACCEPT

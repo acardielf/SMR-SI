@@ -70,3 +70,15 @@ sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 sudo iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT
 
 sudo iptables -P OUTPUT DROP
+
+# Permitir conexiones locales
+sudo iptables -A INPUT -i lo -j ACCEPT
+sudo iptables -A OUTPUT -o lo -j ACCEPT
+
+# Permitir conexiones DNS para resolver nombres de dominio y conexiones HTTP y HTTPS para actualizaciones
+sudo iptables -I INPUT -p udp --sport 53 -j ACCEPT
+sudo iptables -I INPUT -p tcp --sport 53 -j ACCEPT
+sudo iptables -I OUTPUT -p udp --dport 53 -j ACCEPT
+sudo iptables -I OUTPUT -p tcp --dport 53 -j ACCEPT
+sudo iptables -I OUTPUT -p tcp --dport 80 -j ACCEPT
+sudo iptables -I OUTPUT -p tcp --dport 443 -j ACCEPT
