@@ -1,8 +1,0 @@
-[mysqld-auth]
-enabled = true
-filter = mysqld-auth
-logpath = /var/log/mysql/error.log
-maxretry = 4
-bantime = 86400
-findtime = 60
-ignoreip = 192.168.56.101
