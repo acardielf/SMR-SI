@@ -15,7 +15,7 @@ else
     allow_rule_line=$(echo "$allow_rule" | awk '{print $1}')
 
     # Buscar la primera regla que rechaza conexiones al puerto 3306
-    reject_rule=$(echo "$iptables_rules" | grep -E "DROP|REJECT.*dpt:3306" | head -n 1)
+    reject_rule=$(echo "$iptables_rules" | grep -E "^[0-9]+\s+(DROP|REJECT).*dpt:3306" | head -n 1)
 
     if [[ -z $reject_rule ]]; then
         echo "[✘] No se encontró una regla que rechace conexiones al puerto 3306."

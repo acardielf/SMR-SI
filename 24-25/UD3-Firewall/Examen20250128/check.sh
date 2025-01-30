@@ -39,9 +39,13 @@ echo
 echo
 ejecutar_script ./.scripts/check/script9.sh
 
+
+# Calcular la nota con dos decimales
+nota=$(echo "scale=2; $criterios_cumplidos * 10 / 8" | bc)
+
 # Mostrar resumen final
 echo "======================================"
 echo "Resumen final:"
 echo "Criterios cumplidos: $criterios_cumplidos de 8"
-echo "Nota: $((criterios_cumplidos * 10 / 8))/10"
+echo "Nota: $nota/10"
 echo "======================================"
