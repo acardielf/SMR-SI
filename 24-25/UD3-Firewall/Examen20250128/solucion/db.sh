@@ -22,6 +22,11 @@ sudo iptables -A INPUT -p tcp -s 192.168.56.101 --dport 3306 -j ACCEPT
 # 5. Rechazar todas las conexiones entrantes al puerto 3306 (MariaDB) de cualquier origen
 sudo iptables -A INPUT -p tcp --dport 3306 -j REJECT
 
+sudo iptables -A INPUT -p tcp --sport 80 -j ACCEPT
+sudo iptables -A INPUT -p tcp --sport 443 -j ACCEPT
+sudo iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
+sudo iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT
+
 # 8. Configurar Fail2Ban para bloquear ataques de fuerza bruta al puerto MariaDB
 sudo apt-get install fail2ban -y
 sudo rm -rf /etc/fail2ban/jail.local

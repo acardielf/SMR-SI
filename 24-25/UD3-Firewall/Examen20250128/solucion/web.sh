@@ -17,6 +17,9 @@ iptables -A INPUT -p tcp -s 192.168.56.102 --sport 3306 -j ACCEPT
 iptables -A INPUT -p tcp -s 192.168.56.1 --dport 80 -j ACCEPT
 iptables -A OUTPUT -p tcp -d 192.168.56.1 --sport 80 -j ACCEPT
 
-
+sudo iptables -A INPUT -p tcp --sport 80 -j ACCEPT
+sudo iptables -A INPUT -p tcp --sport 443 -j ACCEPT
+sudo iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
+sudo iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT
 
 echo ** Fin del script de web **

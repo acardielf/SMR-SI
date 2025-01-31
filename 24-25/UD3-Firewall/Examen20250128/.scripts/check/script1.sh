@@ -8,8 +8,8 @@ verificar_maquina() {
     echo "Verificando máquina: $maquina"
 
     # 1. Verificar conectividad a Internet
-    ping=$(vagrant ssh $maquina -c "curl -s --max-time 2 ifconfig.me" 2>&1)
-    if [[ $ping == *"64 bytes from"* ]]; then
+    ping=$(vagrant ssh $maquina -c "curl -sL --connect-timeout 2 --max-time 4 -o /dev/null ifconfig.me" 2>&1)
+    if [[ $ping == *"200"* ]]; then
         echo "   [OK] Conectividad a Internet funciona correctamente."
     else
         echo "   [✘] Error en la conectividad a Internet."
