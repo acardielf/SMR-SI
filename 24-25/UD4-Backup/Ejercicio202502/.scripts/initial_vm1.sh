@@ -48,4 +48,8 @@ sudo iptables -X
 
 
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
-vag
+
+
+sudo add-apt-repository ppa:ondrej/php -y
+sudo apt-get install -y php8.2 php-cli php-common php-mbstring php-xml php-curl php-zip php-gd php-intl php-bcmath php-mysql php-sqlite3 unzip composer
+
