@@ -2,3 +2,4 @@
 .vscode
 **/.vagrant
 **/UD3-Firewall/**/*.log
+**/UD4-Backup/**/*.log
