@@ -64,7 +64,7 @@ DB_PASSWORD='salmedina_pass'
 DB_HOST='localhost'
 DB_CHARSET='utf8mb4'
 
-sudo mysql -e "CREATE DATABASE IF NOT EXISTS '$DB_NAME' CHARACTER SET $DB_CHARSET;"
+sudo mysql -e "CREATE DATABASE IF NOT EXISTS $DB_NAME CHARACTER SET $DB_CHARSET;"
 sudo mysql -e "CREATE USER IF NOT EXISTS '$DB_USER'@'$DB_HOST' IDENTIFIED BY '$DB_PASSWORD';"
 sudo mysql -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'$DB_HOST';"
 sudo mysql -e "FLUSH PRIVILEGES;"
@@ -77,7 +77,10 @@ php /usr/local/bin/wp --info
 
 sudo rm -rf ${WP_ROOT}/*
 
+sudo chown www-data:www-data -R ${WP_ROOT}
+
 sudo -u www-data wp core download --path="${WP_ROOT}"
 sudo -u www-data wp config create --path="${WP_ROOT}" --dbname="${DB_NAME}" --dbuser="${DB_USER}" --dbpass="${DB_PASSWORD}" --locale=es_ES
-sudo -u www-data wp core install --path="${WP_ROOT}" --url=192.168.56.103 --title="Salmedina SMR" --admiwp adin_user=salmedina --admin_password=salmedina --admin_email=admin@salmedina.com
+sudo -u www-data wp language core install es_ES --path="${WP_ROOT}"
+sudo -u www-data wp core install --path="${WP_ROOT}" --url=192.168.56.103 --title="Salmedina SMR" --admin_user=salmedina --admin_password=salmedina --admin_email=admin@salmedina.com --locale=es_ES
 
