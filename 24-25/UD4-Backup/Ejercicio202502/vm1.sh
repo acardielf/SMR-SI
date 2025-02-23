@@ -1,10 +1,10 @@
 #!/bin/bash
 
 ######################################################
-nombre="CAMBIA AQUÍ TU NOMBRE"
+GRUPO="CAMBIA AQUÍ TU GRUPO"
 ######################################################
 
-echo ** Ejecutando script de web de $nombre **
+echo ** Ejecutando script de web de $GRUPO **
 ######################################################
 #### EJECUTA AQUI TODAS LAS ORDENES QUE NECESITES ####
 ######################################################

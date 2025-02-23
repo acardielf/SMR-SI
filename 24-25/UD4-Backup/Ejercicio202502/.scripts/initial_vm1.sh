@@ -27,6 +27,9 @@
 #                                                                                                                       #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+wp() {
+    sudo -u www-data /usr/local/bin/wp --path=${WP_ROOT} "$@"
+}
 
 
 
@@ -63,6 +66,7 @@ DB_PASSWORD='salmedina_pass'
 DB_HOST='localhost'
 DB_CHARSET='utf8mb4'
 
+sudo mysql -e "DROP DATABASE IF EXISTS $DB_NAME;"
 sudo mysql -e "CREATE DATABASE IF NOT EXISTS $DB_NAME CHARACTER SET $DB_CHARSET;"
 sudo mysql -e "CREATE USER IF NOT EXISTS '$DB_USER'@'$DB_HOST' IDENTIFIED BY '$DB_PASSWORD';"
 sudo mysql -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'$DB_HOST';"
@@ -77,14 +81,26 @@ sudo rm -rf ${WP_ROOT}/*
 
 sudo chown -R www-data:www-data ${WP_ROOT}
 
+echo "alias wp='sudo -u www-data wp --path=${WP_ROOT}'" >> /home/vagrant/.bashrc
+chown vagrant:vagrant /home/vagrant/.bashrc
+
+
 echo "Downloading Wordpress..."
-sudo -u www-data wp core download --path="${WP_ROOT}"
+wp core download
 
 echo "Creating wp-config.php..."
-sudo -u www-data wp config create --path="${WP_ROOT}" --dbname="${DB_NAME}" --dbuser="${DB_USER}" --dbpass="${DB_PASSWORD}" --locale=es_ES
+wp config create --dbname="${DB_NAME}" --dbuser="${DB_USER}" --dbpass="${DB_PASSWORD}" --locale=es_ES
 
 echo "Installing Wordpress..."
-sudo -u www-data wp core install --path="${WP_ROOT}" --url=192.168.56.103 --title="Salmedina SMR" --admin_user=salmedina --admin_password=salmedina --admin_email=admin@salmedina.com
+wp core install --url=192.168.56.103 --title="Salmedina SMR" --admin_user=salmedina --admin_password=salmedina --admin_email=admin@salmedina.com
 
 echo "Installing Wordpress language..."
-sudo -u www-data wp language core install es_ES --path="${WP_ROOT}"
+wp language core install es_ES
+
+echo "Remove default content..."
+wp post delete 1
+wp comment delete 1 --force
+
+echo "Creating first post..."
+wp post create --post_type=post --post_title="Inicio" --post_content="Bienvenido al examen de Seguridad Informática" --post_status=publish
+wp cache flush
