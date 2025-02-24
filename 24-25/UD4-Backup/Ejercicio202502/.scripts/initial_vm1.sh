@@ -104,3 +104,6 @@ wp comment delete 1 --force
 echo "Creating first post..."
 wp post create --post_type=post --post_title="Inicio" --post_content="Bienvenido al examen de Seguridad Informática" --post_status=publish
 wp cache flush
+
+
+sudo iptables -A OUTPUT -p tcp -d 192.168.56.104 -j REJECT
