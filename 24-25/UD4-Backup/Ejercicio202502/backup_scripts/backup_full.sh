@@ -10,6 +10,11 @@ PASSWORD="Solucion2025"
 DATE=$(date +"%Y-%m-%d")
 FILE_NAME="full_backup_$DATE.zip"
 TEMP_DIR="/tmp/backup_full_$DATE"
+WP_ROOT=/var/www/html
+
+wp() {
+    sudo -u www-data /usr/local/bin/wp --path=${WP_ROOT} "$@"
+}
 
 # Crear directorios
 mkdir -p "$BACKUP_DIR"

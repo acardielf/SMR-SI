@@ -6,6 +6,11 @@ BACKUP_DIR="/backups/wordpress/daily"
 PASSWORD="Solucion2025"
 DATE=$(date +"%Y-%m-%d")
 FILE_NAME="wp_backup_$DATE.zip"
+WP_ROOT=/var/www/html
+
+wp() {
+    sudo -u www-data /usr/local/bin/wp --path=${WP_ROOT} "$@"
+}
 
 # Crear directorio si no existe
 mkdir -p "$BACKUP_DIR"

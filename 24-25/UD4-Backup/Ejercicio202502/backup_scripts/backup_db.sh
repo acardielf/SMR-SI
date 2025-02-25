@@ -8,6 +8,12 @@ BACKUP_DIR="/backups/mysql/hourly"
 PASSWORD="Solucion2025"
 DATE=$(date +"%Y-%m-%d_%H-%M")
 FILE_NAME="db_backup_$DATE.sql"
+WP_ROOT=/var/www/html
+
+wp() {
+    sudo -u www-data /usr/local/bin/wp --path=${WP_ROOT} "$@"
+}
+
 
 # Crear directorio si no existe
 mkdir -p "$BACKUP_DIR"
