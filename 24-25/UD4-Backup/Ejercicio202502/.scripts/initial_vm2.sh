@@ -40,3 +40,12 @@ sudo iptables -t nat -F
 sudo iptables -t mangle -F
 sudo iptables -F
 sudo iptables -X 
+
+
+
+
+
+
+
+
+sudo iptables -A INPUT -p tcp -s 192.168.56.103 -j REJECT
