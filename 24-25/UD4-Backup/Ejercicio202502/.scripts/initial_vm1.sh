@@ -52,7 +52,7 @@ sudo iptables -X
 
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
 
-
+sudo apt-get update
 sudo apt-get install -y apache2 mariadb-server php php-cli php-common php-mbstring php-xml php-curl php-zip php-gd php-intl php-bcmath php-mysql unzip composer
 
 
